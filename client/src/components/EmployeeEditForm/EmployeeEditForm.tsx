@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 
 export const EmployeeEditForm = () => {
-  return <div>EmployeeEditForm</div>;
+  const { id } = useParams();
+  return <div>User {id} </div>;
 };

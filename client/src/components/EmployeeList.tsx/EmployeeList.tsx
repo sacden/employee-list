@@ -1,7 +1,7 @@
 import * as React from "react";
 import { employees } from "../../data/employees";
 import { Search } from "../common/Search.tsx/Search";
-
+import { Link } from "react-router-dom";
 export const EmployeeList = () => {
   return (
     <>
@@ -46,7 +46,7 @@ export const EmployeeList = () => {
                   </td>
                   <td className="px-6 py-4">
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                      Edit user
+                      <Link to={`/employees/${employee.id}/edit`}> Edit user </Link>
                     </a>
                   </td>
                 </tr>
