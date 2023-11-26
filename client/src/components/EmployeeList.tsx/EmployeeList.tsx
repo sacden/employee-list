@@ -15,7 +15,7 @@ export const EmployeeList = () => {
             <tr>
               {["Name", "Phone number", "Position", "Department", "Boss", "Status", "Action"].map((item) => {
                 return (
-                  <th scope="col" className="px-6 py-3">
+                  <th key={item} scope="col" className="px-6 py-3">
                     {item}
                   </th>
                 );
