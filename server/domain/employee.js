@@ -8,11 +8,12 @@
  * @param {string} phoneNumber the phone number
  * @param {string} boss the boss
  * @param {string} status the status
+ * @param {string} profileImage the profile image
  * @param {"SOFTWAREENGINEER"|"TEAMLEAD"|"ENGINEERINGMANAGER"|"HRMANAGER"|"RECRUITER"|"FINANCEMANAGER"|"ACCOUNTANT"|"MARKETINGMANAGER"|"MARKETINGSPECIALIST"|"CEO"} position
  * @param {"1"|"2"|"3"|"4"|"5"|"6"|"7"} department department of the company
  * @constructor
  */
-const Employee = function (id, firstName, lastName, email, phoneNumber, boss, status, position, department) {
+const Employee = function (id, firstName, lastName, email, phoneNumber, boss, status, profileImage, position, department) {
   this.id = id;
   this.firstName = firstName;
   this.lastName = lastName;
@@ -20,6 +21,7 @@ const Employee = function (id, firstName, lastName, email, phoneNumber, boss, st
   this.phoneNumber = phoneNumber;
   this.boss = boss;
   this.status = status;
+  this.profileImage = profileImage;
   this.position = position;
   this.department = department;
 };

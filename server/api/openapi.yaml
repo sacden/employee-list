@@ -202,6 +202,7 @@ components:
         phoneNumber: phoneNumber
         boss: boss
         status: status
+        profileImage: profileImage
         year: null
         id: 0
         position: null
@@ -228,6 +229,9 @@ components:
         status:
           description: Status of the employee
           type: string
+        profileImage:
+          description: profileImage of the employee
+          type: string
         position:
           $ref: "#/components/schemas/Position"
         department:
@@ -240,6 +244,7 @@ components:
         - phoneNumber
         - boss
         - status
+        - profileImage
         - department
       type: object
     Department:

@@ -85,7 +85,7 @@ const postEmployee = ({ employee }) =>
   new Promise(async (resolve, reject) => {
     try {
       const createdEmployee = employeeDao.save(
-        new Employee(null, employee.firstName, employee.lastName, employee.email, employee.phoneNumber, employee.boss, employee.status, employee.position, employee.department)
+        new Employee(null, employee.firstName, employee.lastName, employee.email, employee.phoneNumber, employee.boss, employee.status, employee.profileImage, employee.position, employee.department)
       );
       resolve(Service.successResponse(createdEmployee.id, 200));
     } catch (e) {
@@ -104,7 +104,18 @@ const putEmployee = ({ employeeId, employee }) =>
   new Promise(async (resolve, reject) => {
     try {
       employeeDao.save(
-        new Employee(Number(employeeId), employee.firstName, employee.lastName, employee.email, employee.phoneNumber, employee.boss, employee.status, employee.position, employee.department)
+        new Employee(
+          Number(employeeId),
+          employee.firstName,
+          employee.lastName,
+          employee.email,
+          employee.phoneNumber,
+          employee.boss,
+          employee.status,
+          employee.profileImage,
+          employee.position,
+          employee.department
+        )
       );
       resolve({ code: 204 });
     } catch (e) {
@@ -113,12 +124,12 @@ const putEmployee = ({ employeeId, employee }) =>
   });
 
 function persistSampleEmployees() {
-  employeeDao.save(new Employee(null, "John", "Doe", "john.doe@example.com", "+1234567890", "Alice Johnson", "active", "SOFTWAREENGINEER", "1"));
-  employeeDao.save(new Employee(null, "Alice", "Johnson", "alice.johnson@example.com", "+1987654321", "Bob Smith", "active", "TEAMLEAD", "1"));
-  employeeDao.save(new Employee(null, "Bob", "Smith", "bob.smith@example.com", "+1122334455", "Eva Brown", "active", "ENGINEERINGMANAGER", "1"));
-  employeeDao.save(new Employee(null, "Eva", "Brown", "eva.brown@example.com", "+3322114455", "Grace Wilson", "active", "HRMANAGER", "2"));
-  employeeDao.save(new Employee(null, "Wilson", "Wilson", "grace.wilson@example.com", "+4455667788", "Henry Turner", "active", "RECRUITER", "2"));
-  employeeDao.save(new Employee(null, "Henry", "Turner", "henry.turner@example.com", "+7788990011", "Ivy Martin", "active", "FINANCEMANAGER", "3"));
+  employeeDao.save(new Employee(null, "John", "Doe", "john.doe@example.com", "+1234567890", "Alice Johnson", "active", "profile-picture-1.jpeg", "SOFTWAREENGINEER", "1"));
+  employeeDao.save(new Employee(null, "Alice", "Johnson", "alice.johnson@example.com", "+1987654321", "Bob Smith", "active", "profile-picture-2.jpeg", "TEAMLEAD", "1"));
+  employeeDao.save(new Employee(null, "Bob", "Smith", "bob.smith@example.com", "+1122334455", "Eva Brown", "active", "profile-picture-3.jpeg", "ENGINEERINGMANAGER", "1"));
+  employeeDao.save(new Employee(null, "Eva", "Brown", "eva.brown@example.com", "+3322114455", "Grace Wilson", "active", "profile-picture-4.jpeg", "HRMANAGER", "2"));
+  employeeDao.save(new Employee(null, "Wilson", "Wilson", "grace.wilson@example.com", "+4455667788", "Henry Turner", "active", "profile-picture-5.jpeg", "RECRUITER", "2"));
+  employeeDao.save(new Employee(null, "Henry", "Turner", "henry.turner@example.com", "+7788990011", "Ivy Martin", "active", "profile-picture-6.jpeg", "FINANCEMANAGER", "3"));
 }
 
 function createCodebooks() {

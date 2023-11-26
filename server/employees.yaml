@@ -161,6 +161,7 @@ components:
         - phoneNumber
         - boss
         - status
+        - profileImage
         - position
         - department
       properties:
@@ -186,6 +187,9 @@ components:
         status:
           type: string
           description: Status of the employee
+        profileImage:
+          type: string
+          description: Profile image of the employee
         position:
           $ref: "#/components/schemas/Position"
         department:
