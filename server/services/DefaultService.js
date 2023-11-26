@@ -130,6 +130,10 @@ function persistSampleEmployees() {
   employeeDao.save(new Employee(null, "Eva", "Brown", "eva.brown@example.com", "+3322114455", "Grace Wilson", "active", "profile-picture-4.jpeg", "HRMANAGER", "2"));
   employeeDao.save(new Employee(null, "Wilson", "Wilson", "grace.wilson@example.com", "+4455667788", "Henry Turner", "active", "profile-picture-5.jpeg", "RECRUITER", "2"));
   employeeDao.save(new Employee(null, "Henry", "Turner", "henry.turner@example.com", "+7788990011", "Ivy Martin", "active", "profile-picture-6.jpeg", "FINANCEMANAGER", "3"));
+  employeeDao.save(new Employee(null, "Ivy", "Martin", "ivy.martin@example.com", "+8899001122", "Jack White", "active", "profile-picture-4.jpeg", "ACCOUNTANT", "3"));
+  employeeDao.save(new Employee(null, "Jack", "White", "jack.white@example.com", "+9988776655", "Katie Taylor", "active", "profile-picture-5.jpeg", "MARKETINGMANAGER", "4"));
+  employeeDao.save(new Employee(null, "Katie", "Taylor", "katie.taylor@example.com", "+1122334455", "Laura Clark", "active", "profile-picture-9.jpeg", "MARKETINGSPECIALIST", "4"));
+  employeeDao.save(new Employee(null, "Laura", "Clark", "laura.clark@example.com", "+6677889900", "Laura Clark", "active", "profile-picture-10.jpeg", "CEO", "5"));
 }
 
 function createCodebooks() {
