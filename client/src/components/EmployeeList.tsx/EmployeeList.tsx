@@ -45,9 +45,10 @@ export const EmployeeList = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                      <Link to={`/employees/${employee.id}/edit`}> Edit user </Link>
-                    </a>
+                    <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/employees/${employee.id}/edit`}>
+                      {" "}
+                      Edit user{" "}
+                    </Link>
                   </td>
                 </tr>
               );
