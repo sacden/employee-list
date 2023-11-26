@@ -1,13 +1,29 @@
 import * as React from "react";
-import { employees } from "../../data/employees";
+// import { employees } from "../../data/employees";
 import { Search } from "../common/Search.tsx/Search";
 import { Link } from "react-router-dom";
+
 export const EmployeeList = () => {
+  const [employees, setEmployees] = React.useState([]);
+
+  const fetchEmployees = () => {
+    const response = fetch("http://localhost:8080/employees")
+      .then((response) => response.json())
+      .then((body) => setEmployees(body));
+  };
+
+  React.useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  if (!employees) {
+    <div>Loading...</div>;
+  }
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-          <div></div>
+          <div>{JSON.stringify(employees)}</div>
           <Search />
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -27,7 +43,7 @@ export const EmployeeList = () => {
               return (
                 <tr key={employee.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img className="w-10 h-10 rounded-full" src={`${employee.profileImage}`} alt="Jese image" />
+                    <img className="w-10 h-10 rounded-full" src={`${employee?.profileImage}`} alt="Jese image" />
                     <div className="ps-3">
                       <div className="text-base font-semibold">
                         {employee.firstName} {employee.lastName}

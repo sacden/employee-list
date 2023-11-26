@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: employees
+  description: Example REST API for working with employees
+  version: 1.0.0-SNAPSHOT
+paths:
+  /codebooks/{codebookCode}:
+    get:
+      summary: Obtains a list of items of a codebook
+      description: Obtains a list of `CodebookItem`s. The list is sorted by `order`.
+      operationId: getCodebookItems
+      parameters:
+        - name: codebookCode
+          in: path
+          description: Codebook code
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful response
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CodebookItem"
+  /employees:
+    get:
+      summary: Obtains a list of employees
+      description: Obtains a list of `Employee`s. The list is sorted by `lastName` and then by `firstName`.
+      operationId: getemployees
+      responses:
+        200:
+          description: Successful response
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
+    post:
+      summary: Creates a employee
+      description: Creates a `Employee`.
+      operationId: postEmployee
+      requestBody:
+        description: Employee
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/Employee"
+        required: true
+      responses:
+        200:
+          description: Successful response
+          content:
+            "application/json":
+              schema:
+                type: integer
+                format: int64
+      x-codegen-request-body-name: employee
+  /employees/{employeeId}:
+    get:
+      summary: Obtains a employee
+      description: Obtains a `Employee` by its id.
+      operationId: getEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          description: Employee id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Successful response
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/Employee"
+        404:
+          description: When the employee cannot be found
+    put:
+      summary: Saves a employee
+      description: Saves a `Employee`.
+      operationId: putEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          description: Employee id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Employee
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/Employee"
+        required: true
+      responses:
+        204:
+          description: Successful response
+      x-codegen-request-body-name: employee
+    delete:
+      summary: Deletes a employee
+      description: Deletes a `Employee`.
+      operationId: deleteEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          description: Employee id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        204:
+          description: Description
+components:
+  schemas:
+    CodebookItem:
+      type: object
+      required:
+        - code
+        - names
+        - order
+      properties:
+        code:
+          type: string
+          description: Code
+        names:
+          type: object
+          description: Map of (language code, codebook item localization) pairs
+          additionalProperties:
+            type: string
+        order:
+          description: Order of the item within all items of the codebook
+          type: integer
+    Position:
+      type: string
+      enum:
+        - SOFTWAREENGINEER
+        - TEAMLEAD
+        - ENGINEERINGMANAGER
+        - HRMANAGER
+        - RECRUITER
+        - FINANCEMANAGER
+        - ACCOUNTANT
+        - MARKETINGMANAGER
+        - MARKETINGSPECIALIST
+        - CEO
+    Employee:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - phoneNumber
+        - boss
+        - status
+        - position
+        - department
+      properties:
+        id:
+          type: integer
+          description: Id
+          format: int64
+        firstName:
+          type: string
+          description: First name of the employee
+        lastName:
+          type: string
+          description: Last name of the employee
+        email:
+          type: string
+          description: Email of the employee
+        phoneNumber:
+          type: string
+          description: phoneNumber of the employee
+        boss:
+          type: string
+          description: Boss of the employee
+        status:
+          type: string
+          description: Status of the employee
+        position:
+          $ref: "#/components/schemas/Position"
+        department:
+          $ref: "#/components/schemas/Department"
+      description: Employee
+    Department:
+      type: string
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+  parameters:
+    employeeId:
+      name: employeeId
+      in: path
+      description: Employee id
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBodies:
+    employee:
+      description: Employee
+      content:
+        "application/json":
+          schema:
+            $ref: "#/components/schemas/Employee"
+      required: true
