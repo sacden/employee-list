@@ -37,7 +37,20 @@ export const EmployeeList: React.FC = () => {
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-          <div></div>
+          <div>
+            <Link
+              to="/employees/create"
+              id="dropdownActionButton"
+              data-dropdown-toggle="dropdownAction"
+              className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              type="button"
+            >
+              Create employee
+              <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+              </svg>
+            </Link>
+          </div>
           <Search />
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -57,7 +70,7 @@ export const EmployeeList: React.FC = () => {
               return (
                 <tr key={employee.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img className="w-10 h-10 rounded-full" src={`/images/people/${employee.profileImage}`} alt="Jese image" />
+                    <img className="w-10 h-10 rounded-full" src={`/images/people/${employee?.profileImage}`} alt="Jese image" />
                     <div className="ps-3">
                       <div className="text-base font-semibold">
                         {employee.firstName} {employee.lastName}
