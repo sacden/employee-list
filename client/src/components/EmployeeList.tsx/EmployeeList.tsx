@@ -2,6 +2,7 @@ import * as React from "react";
 import { Search } from "../common/Search.tsx/Search";
 import { Link } from "react-router-dom";
 import Employee from "../../types/Employee";
+import { getCodebookItemName } from "../../helpers/codebook";
 
 export const EmployeeList: React.FC = () => {
   const [employees, setEmployees] = React.useState<Employee[]>([]);
@@ -53,8 +54,8 @@ export const EmployeeList: React.FC = () => {
                     </div>
                   </th>
                   <td className="px-6 py-4">{employee.phoneNumber}</td>
-                  <td className="px-6 py-4">{employee.position}</td>
-                  <td className="px-6 py-4">{employee.department}</td>
+                  <td className="px-6 py-4">{getCodebookItemName("POSITION", employee.position)}</td>
+                  <td className="px-6 py-4">{getCodebookItemName("DEPARTMENT", employee.department)}</td>
                   <td className="px-6 py-4">{employee.boss}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center">
