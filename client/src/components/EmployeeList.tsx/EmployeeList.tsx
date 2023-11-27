@@ -1,15 +1,16 @@
 import * as React from "react";
-// import { employees } from "../../data/employees";
 import { Search } from "../common/Search.tsx/Search";
 import { Link } from "react-router-dom";
+import Employee from "../../types/Employee";
 
-export const EmployeeList = () => {
-  const [employees, setEmployees] = React.useState([]);
+export const EmployeeList: React.FC = () => {
+  const [employees, setEmployees] = React.useState<Employee[]>([]);
 
   const fetchEmployees = () => {
-    const response = fetch("http://localhost:8080/employees")
+    fetch("http://localhost:8080/employees")
       .then((response) => response.json())
-      .then((body) => setEmployees(body));
+      .then((body: Employee[]) => setEmployees(body))
+      .catch((error) => console.error("Error fetching employees", error));
   };
 
   React.useEffect(() => {
