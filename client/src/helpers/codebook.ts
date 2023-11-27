@@ -1,6 +1,10 @@
+import CodebookItem from "../types/codebookItem";
+
 const LANGUAGE = "cs";
 
-export const getCodebookItemName = (codebookCode, codebookItemCode) => {
+type Codebook = { [key: string]: CodebookItem[] };
+
+export const getCodebookItemName = (codebookCode: string, codebookItemCode: string): string => {
   let codebookItemName = codebookItemCode;
   const codebook = codebooks[codebookCode];
   if (codebook) {
@@ -12,7 +16,7 @@ export const getCodebookItemName = (codebookCode, codebookItemCode) => {
   return codebookItemName;
 };
 
-export const codebooks = {
+export const codebooks: Codebook = {
   POSITION: [
     { code: "SOFTWAREENGINEER", names: { cs: "Programátor", en: "Software Engineer" }, order: 1 },
     { code: "TEAMLEAD", names: { cs: "Team Leader", en: "Team Lead" }, order: 2 },
