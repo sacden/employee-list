@@ -14,6 +14,18 @@ export const EmployeeList: React.FC = () => {
       .catch((error) => console.error("Error fetching employees", error));
   };
 
+  const deleteEmployee = (employeeId) => {
+    return fetch(`http://localhost:8080/employees/${employeeId}`, {
+      method: "DELETE",
+    });
+  };
+
+  const handleDeleteButton = (employeeId) => {
+    deleteEmployee(employeeId).then(() => {
+      fetchEmployees();
+    });
+  };
+
   React.useEffect(() => {
     fetchEmployees();
   }, []);
@@ -65,8 +77,13 @@ export const EmployeeList: React.FC = () => {
                   <td className="px-6 py-4">
                     <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/employees/${employee.id}/edit`}>
                       {" "}
-                      Edit user{" "}
+                      Edit{" "}
                     </Link>
+
+                    <button className="font-medium text-red-600 dark:text-red-500 hover:underline ml-1" onClick={() => handleDeleteButton(employee.id)}>
+                      {" "}
+                      Remove{" "}
+                    </button>
                   </td>
                 </tr>
               );
