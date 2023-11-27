@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { codebooks, getCodebookItemName } from "../../helpers/codebook";
 
 export const EmployeeEditForm = () => {
   const { id } = useParams();
@@ -40,11 +41,14 @@ export const EmployeeEditForm = () => {
   }, []);
 
   return (
-    <form className="container">
-      <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-20">
+    <form>
+      <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-20 ">
         <div className="flex flex-col items-center pb-10">
-          <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`/images/people/${employee.profileImage}`} alt="" />
+          <img className="w-24 h-24 mb-3 rounded-full shadow-lg mt-10" src={`/images/people/${employee.profileImage}`} alt="" />
           <div>
+            <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Name
+            </label>
             <input
               type="name"
               name="name"
@@ -57,6 +61,9 @@ export const EmployeeEditForm = () => {
             />
           </div>
           <div>
+            <label htmlFor="surname" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Surname
+            </label>
             <input
               type="surname"
               name="surname"
@@ -69,6 +76,9 @@ export const EmployeeEditForm = () => {
             />
           </div>
           <div>
+            <label htmlFor="email" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -81,6 +91,9 @@ export const EmployeeEditForm = () => {
             />
           </div>
           <div>
+            <label htmlFor="phoneNumber" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Phone number
+            </label>
             <input
               type="phoneNumber"
               name="phoneNumber"
@@ -93,30 +106,46 @@ export const EmployeeEditForm = () => {
             />
           </div>
           <div>
-            <input
-              type="position"
-              name="position"
+            <label htmlFor="position" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Select a position option
+            </label>
+
+            <select
               id="position"
+              name="position"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="position"
-              required
               value={employee.position}
               onChange={(e) => setEmployee({ ...employee, position: e.target.value })}
-            />
+            >
+              {codebooks["POSITION"].map((positionCode) => (
+                <option key={positionCode.code} value={positionCode.code}>
+                  {getCodebookItemName("POSITION", positionCode.code)}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
-            <input
-              type="department"
-              name="department"
+            <label htmlFor="department" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Select a department option
+            </label>
+            <select
               id="department"
+              name="department"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="department"
-              required
               value={employee.department}
               onChange={(e) => setEmployee({ ...employee, department: e.target.value })}
-            />
+            >
+              {codebooks["DEPARTMENT"].map((departmentCode) => (
+                <option key={departmentCode.code} value={departmentCode.code}>
+                  {getCodebookItemName("DEPARTMENT", departmentCode.code)}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
+            <label htmlFor="boss" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Boss
+            </label>
             <input
               type="boss"
               name="boss"
@@ -129,6 +158,9 @@ export const EmployeeEditForm = () => {
             />
           </div>
           <div>
+            <label htmlFor="status" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
+              Status
+            </label>
             <input
               type="status"
               name="status"
@@ -142,7 +174,7 @@ export const EmployeeEditForm = () => {
           </div>
           <div className="flex mt-4 md:mt-6">
             <button
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3 w-full"
               onClick={handleSubmit}
             >
               Save

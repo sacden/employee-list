@@ -249,11 +249,9 @@ components:
       type: object
     Department:
       enum:
-        - "1"
-        - "2"
-        - "3"
-        - "4"
-        - "5"
-        - "6"
-        - "7"
+        - "IT"
+        - "HR"
+        - "FINANCE"
+        - "MARKETING"
+        - "BOARD"
       type: string

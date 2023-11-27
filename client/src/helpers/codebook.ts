@@ -30,10 +30,10 @@ export const codebooks: Codebook = {
     { code: "CEO", names: { cs: "Výkonný ředitel", en: "CEO" }, order: 10 },
   ],
   DEPARTMENT: [
-    { code: "1", names: { cs: "IT", en: "Engineering" }, order: 1 },
-    { code: "2", names: { cs: "HR", en: "Human Resources" }, order: 2 },
-    { code: "3", names: { cs: "Finance", en: "Finance" }, order: 2 },
-    { code: "4", names: { cs: "Marketing", en: "Marketing" }, order: 2 },
-    { code: "5", names: { cs: "Board", en: "Executive" }, order: 2 },
+    { code: "IT", names: { cs: "IT", en: "Engineering" }, order: 1 },
+    { code: "HR", names: { cs: "HR", en: "Human Resources" }, order: 2 },
+    { code: "FINANCE", names: { cs: "Finance", en: "Finance" }, order: 2 },
+    { code: "MARKETING", names: { cs: "Marketing", en: "Marketing" }, order: 2 },
+    { code: "BOARD", names: { cs: "Board", en: "Executive" }, order: 2 },
   ],
 };
