@@ -6,6 +6,8 @@ import { getCodebookItemName } from "../../helpers/codebook";
 
 export const EmployeeList: React.FC = () => {
   const [employees, setEmployees] = React.useState<Employee[]>([]);
+  const [filteredEmployees, setFilteredEmployees] = React.useState<Employee[]>([]);
+  const [search, setSearch] = React.useState<Employee[]>([]);
 
   const fetchEmployees = () => {
     fetch("http://localhost:8080/employees")
@@ -25,6 +27,16 @@ export const EmployeeList: React.FC = () => {
       fetchEmployees();
     });
   };
+
+  const handleSearchEmployee = (searchQuery: string) => {
+    const filteredEmployees = employees.filter((employee) => employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()));
+    console.log(filteredEmployees);
+    setFilteredEmployees(filteredEmployees);
+  };
+
+  React.useEffect(() => {
+    handleSearchEmployee(search);
+  }, [search]);
 
   React.useEffect(() => {
     fetchEmployees();
@@ -51,7 +63,7 @@ export const EmployeeList: React.FC = () => {
               </svg>
             </Link>
           </div>
-          <Search />
+          <Search search={search} setSearch={setSearch} />
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -66,7 +78,7 @@ export const EmployeeList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee) => {
+            {filteredEmployees.map((employee) => {
               return (
                 <tr key={employee.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">

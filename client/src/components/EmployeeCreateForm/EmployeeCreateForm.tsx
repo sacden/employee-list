@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { codebooks, getCodebookItemName } from "../../helpers/codebook";
 
 const EmployeeCreateForm = () => {
   const navigate = useNavigate();
-  //   const [houseCodes, setHouseCodes] = useState([]);
-
   const [employee, setEmployee] = React.useState({
     firstName: "",
     lastName: "",
@@ -39,6 +37,10 @@ const EmployeeCreateForm = () => {
       <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-20 ">
         <div className="flex flex-col items-center pb-10">
           {/* <img className="w-24 h-24 mb-3 rounded-full shadow-lg mt-10" src={`/images/people/${employee.profileImage}`} alt="" />*/}
+          <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-10" to={`/`}>
+            {" "}
+            Back{" "}
+          </Link>
           <div>
             <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Name
