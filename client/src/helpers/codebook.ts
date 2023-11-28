@@ -1,6 +1,6 @@
 import CodebookItem from "../types/codebookItem";
 
-const LANGUAGE = "cs";
+const LANGUAGE = "en";
 
 type Codebook = { [key: string]: CodebookItem[] };
 
