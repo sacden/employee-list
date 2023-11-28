@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Search } from "../common/Search.tsx/Search";
+import { Search } from "../common/Search/Search";
 import { Link } from "react-router-dom";
 import Employee from "../../types/Employee";
 import { getCodebookItemName } from "../../helpers/codebook";
@@ -7,7 +7,7 @@ import { getCodebookItemName } from "../../helpers/codebook";
 export const EmployeeList: React.FC = () => {
   const [employees, setEmployees] = React.useState<Employee[]>([]);
   const [filteredEmployees, setFilteredEmployees] = React.useState<Employee[]>([]);
-  const [search, setSearch] = React.useState<Employee[]>([]);
+  const [search, setSearch] = React.useState<string>("");
 
   const fetchEmployees = () => {
     fetch("http://localhost:8080/employees")
@@ -16,16 +16,18 @@ export const EmployeeList: React.FC = () => {
       .catch((error) => console.error("Error fetching employees", error));
   };
 
-  const deleteEmployee = (employeeId) => {
+  const deleteEmployee = (employeeId: number) => {
     return fetch(`http://localhost:8080/employees/${employeeId}`, {
       method: "DELETE",
     });
   };
 
-  const handleDeleteButton = (employeeId) => {
-    deleteEmployee(employeeId).then(() => {
-      fetchEmployees();
-    });
+  const handleDeleteButton = (employeeId: number | null) => {
+    if (employeeId !== null) {
+      deleteEmployee(employeeId).then(() => {
+        fetchEmployees();
+      });
+    }
   };
 
   const handleSearchEmployee = (searchQuery: string) => {
@@ -93,7 +95,7 @@ export const EmployeeList: React.FC = () => {
               return (
                 <tr key={employee.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img className="w-10 h-10 rounded-full" src={`/images/people/${employee?.profileImage}`} alt="Jese image" />
+                    <img className="w-10 h-10 rounded-full" src={`/images/people/${employee?.profileImage}`} alt={employee?.profileImage} />
                     <div className="ps-3">
                       <div className="text-base font-semibold">
                         {employee.firstName} {employee.lastName}

@@ -27,7 +27,7 @@ export const EmployeeEditForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     updateStudent().then(() => {
       navigate(`/`);
@@ -35,16 +35,27 @@ export const EmployeeEditForm = () => {
   };
 
   React.useEffect(() => {
-    const response = fetch(`http://localhost:8080/employees/${id}`)
-      .then((response) => response.json())
-      .then((body) => setEmployee(body));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/employees/${id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const body = await response.json();
+        setEmployee(body);
+      } catch (error) {
+        console.error("Error fetching employee data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <form>
       <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-20 ">
         <div className="flex flex-col items-center pb-10">
-          <img className="w-24 h-24 mb-3 rounded-full shadow-lg mt-10" src={`/images/people/${employee.profileImage}`} alt="" />
+          <img className="w-24 h-24 mb-3 rounded-full shadow-lg mt-10" src={`/images/people/${employee.profileImage}`} alt={employee.profileImage} />
           <div>
             <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Name

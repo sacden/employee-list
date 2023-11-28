@@ -1,10 +1,15 @@
-import React from "react";
+import * as React from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { codebooks, getCodebookItemName } from "../../helpers/codebook";
+import Employee from "../../types/Employee";
 
-const EmployeeCreateForm = () => {
+interface EmployeeCreateFormProps {}
+
+const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
   const navigate = useNavigate();
-  const [employee, setEmployee] = React.useState({
+  const [employee, setEmployee] = useState<Employee>({
+    id: null,
     firstName: "",
     lastName: "",
     email: "",
@@ -16,22 +21,35 @@ const EmployeeCreateForm = () => {
     department: "",
   });
 
-  const createEmployee = () => {
-    return fetch(`http://localhost:8080/employees/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(employee),
-    });
+  const createEmployee = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/employees/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(employee),
+      });
+
+      if (response.ok) {
+        navigate(`/`);
+      } else {
+        console.error("Error creating employee");
+      }
+    } catch (error) {
+      console.error("Error creating employee", error);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createEmployee().then(() => {
-      navigate(`/`);
-    });
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    createEmployee();
+  };
+
   return (
     <form>
       <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-20 ">
@@ -53,7 +71,7 @@ const EmployeeCreateForm = () => {
               placeholder="Name"
               required
               value={employee.firstName}
-              onChange={(e) => setEmployee({ ...employee, firstName: e.target.value })}
+              onChange={handleInputChange}
             />
           </div>
           <div>

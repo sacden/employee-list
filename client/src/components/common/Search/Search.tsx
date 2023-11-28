@@ -1,9 +1,13 @@
 import * as React from "react";
 
-export const Search = ({ search, setSearch }) => {
+interface SearchProps {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Search: React.FC<SearchProps> = ({ search, setSearch }) => {
   return (
     <>
-      {/* <label htmlFor="table-search" className="sr-only"> */}
       <label className="sr-only">Search</label>
       <div className="relative">
         <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
