@@ -29,8 +29,17 @@ export const EmployeeList: React.FC = () => {
   };
 
   const handleSearchEmployee = (searchQuery: string) => {
-    const filteredEmployees = employees.filter((employee) => employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()));
-    console.log(filteredEmployees);
+    const filteredEmployees = employees.filter(
+      (employee) =>
+        employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.boss.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.position.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.department.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     setFilteredEmployees(filteredEmployees);
   };
 
@@ -41,6 +50,8 @@ export const EmployeeList: React.FC = () => {
   React.useEffect(() => {
     fetchEmployees();
   }, []);
+
+  const employeesArr = search.length > 0 ? filteredEmployees : employees;
 
   if (!employees) {
     <div>Loading...</div>;
@@ -78,7 +89,7 @@ export const EmployeeList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredEmployees.map((employee) => {
+            {employeesArr.map((employee) => {
               return (
                 <tr key={employee.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
