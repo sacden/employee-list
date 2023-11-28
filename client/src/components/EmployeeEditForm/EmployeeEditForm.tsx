@@ -1,6 +1,9 @@
 import * as React from "react";
+import { ChangeEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { codebooks, getCodebookItemName } from "../../helpers/codebook";
+import Employee from "../../types/Employee";
+import { Input } from "../common/Input/Input";
 
 export const EmployeeEditForm = () => {
   const { id } = useParams();
@@ -16,6 +19,10 @@ export const EmployeeEditForm = () => {
     position: "",
     department: "",
   });
+
+  const handleInputChange = (property: keyof Employee, e: ChangeEvent<HTMLInputElement>) => {
+    setEmployee({ ...employee, [property]: e.target.value });
+  };
 
   const updateStudent = () => {
     return fetch(`http://localhost:8080/employees/${id}`, {
@@ -60,61 +67,29 @@ export const EmployeeEditForm = () => {
             <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Name
             </label>
-            <input
-              type="name"
-              name="name"
-              id="name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="Name"
-              required
-              value={employee.firstName}
-              onChange={(e) => setEmployee({ ...employee, firstName: e.target.value })}
-            />
+
+            <Input name="firstName" value={employee.firstName} onChange={(e) => handleInputChange("firstName", e)} />
           </div>
           <div>
             <label htmlFor="surname" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Surname
             </label>
-            <input
-              type="surname"
-              name="surname"
-              id="surname"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="Surname"
-              required
-              value={employee.lastName}
-              onChange={(e) => setEmployee({ ...employee, lastName: e.target.value })}
-            />
+
+            <Input name="surname" value={employee.lastName} onChange={(e) => handleInputChange("lastName", e)} />
           </div>
           <div>
             <label htmlFor="email" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Email
             </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="Email"
-              required
-              value={employee.email}
-              onChange={(e) => setEmployee({ ...employee, email: e.target.value })}
-            />
+
+            <Input name="email" value={employee.email} onChange={(e) => handleInputChange("email", e)} />
           </div>
           <div>
             <label htmlFor="phoneNumber" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Phone number
             </label>
-            <input
-              type="phoneNumber"
-              name="phoneNumber"
-              id="phoneNumber"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="+1 123 234 567"
-              required
-              value={employee.phoneNumber}
-              onChange={(e) => setEmployee({ ...employee, phoneNumber: e.target.value })}
-            />
+
+            <Input name="phoneNumber" value={employee.phoneNumber} onChange={(e) => handleInputChange("phoneNumber", e)} />
           </div>
           <div>
             <label htmlFor="position" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
@@ -157,31 +132,15 @@ export const EmployeeEditForm = () => {
             <label htmlFor="boss" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Boss
             </label>
-            <input
-              type="boss"
-              name="boss"
-              id="boss"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="boss"
-              required
-              value={employee.boss}
-              onChange={(e) => setEmployee({ ...employee, boss: e.target.value })}
-            />
+
+            <Input name="boss" value={employee.boss} onChange={(e) => handleInputChange("boss", e)} />
           </div>
           <div>
             <label htmlFor="status" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
               Status
             </label>
-            <input
-              type="status"
-              name="status"
-              id="status"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 clablock w-64 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white my-2"
-              placeholder="status"
-              required
-              value={employee.status}
-              onChange={(e) => setEmployee({ ...employee, status: e.target.value })}
-            />
+
+            <Input name="status" value={employee.status} onChange={(e) => handleInputChange("status", e)} />
           </div>
           <div className="flex mt-4 md:mt-6">
             <button
