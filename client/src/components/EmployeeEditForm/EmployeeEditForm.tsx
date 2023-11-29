@@ -81,10 +81,7 @@ export const EmployeeEditForm = () => {
             <Input name="phoneNumber" value={employee.phoneNumber} onChange={(e) => handleInputChange("phoneNumber", e)} />
           </div>
           <div>
-            <label htmlFor="position" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Select a position option
-            </label>
-
+            <Label name="position" value="Select a position option" />
             <select
               id="position"
               name="position"
@@ -100,9 +97,7 @@ export const EmployeeEditForm = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="department" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Select a department option
-            </label>
+            <Label name="department" value="Select a department option" />
             <select
               id="department"
               name="department"

@@ -3,6 +3,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { codebooks, getCodebookItemName } from "../../helpers/codebook";
 import Employee from "../../types/Employee";
+import { Label } from "../common/Label/Label";
 
 interface EmployeeCreateFormProps {}
 
@@ -60,9 +61,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             Back{" "}
           </Link>
           <div>
-            <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Name
-            </label>
+            <Label name="name" value="Name" />
             <input
               type="name"
               name="name"
@@ -75,9 +74,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             />
           </div>
           <div>
-            <label htmlFor="surname" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Surname
-            </label>
+            <Label name="surname" value="Surname" />
             <input
               type="surname"
               name="surname"
@@ -90,9 +87,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Email
-            </label>
+            <Label name="email" value="Email" />
             <input
               type="email"
               name="email"
@@ -105,9 +100,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             />
           </div>
           <div>
-            <label htmlFor="phoneNumber" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Phone number
-            </label>
+            <Label name="phoneNumber" value="Phone number" />
             <input
               type="phoneNumber"
               name="phoneNumber"
@@ -120,10 +113,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             />
           </div>
           <div>
-            <label htmlFor="position" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Select a position option
-            </label>
-
+            <Label name="position" value="Select a position option" />
             <select
               id="position"
               name="position"
@@ -139,9 +129,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="department" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Select a department option
-            </label>
+            <Label name="department" value="Select a department option" />
             <select
               id="department"
               name="department"
@@ -157,9 +145,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="boss" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Boss
-            </label>
+            <Label name="boss" value="Boss" />
             <input
               type="boss"
               name="boss"
@@ -172,9 +158,7 @@ const EmployeeCreateForm: React.FC<EmployeeCreateFormProps> = () => {
             />
           </div>
           <div>
-            <label htmlFor="status" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Status
-            </label>
+            <Label name="status" value="Status" />
             <input
               type="status"
               name="status"
