@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { codebooks, getCodebookItemName } from "../../helpers/codebook";
 import Employee from "../../types/Employee";
 import { Input } from "../common/Input/Input";
+import { Label } from "../common/Label/Label";
 
 export const EmployeeEditForm = () => {
   const { id } = useParams();
@@ -64,31 +65,19 @@ export const EmployeeEditForm = () => {
         <div className="flex flex-col items-center pb-10">
           <img className="w-24 h-24 mb-3 rounded-full shadow-lg mt-10" src={`/images/people/${employee.profileImage}`} alt={employee.profileImage} />
           <div>
-            <label htmlFor="name" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Name
-            </label>
-
+            <Label name="name" value="Name" />
             <Input name="firstName" value={employee.firstName} onChange={(e) => handleInputChange("firstName", e)} />
           </div>
           <div>
-            <label htmlFor="surname" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Surname
-            </label>
-
+            <Label name="surname" value="Surname" />
             <Input name="surname" value={employee.lastName} onChange={(e) => handleInputChange("lastName", e)} />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Email
-            </label>
-
+            <Label name="email" value="Email" />
             <Input name="email" value={employee.email} onChange={(e) => handleInputChange("email", e)} />
           </div>
           <div>
-            <label htmlFor="phoneNumber" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Phone number
-            </label>
-
+            <Label name="phoneNumber" value="Phone number" />
             <Input name="phoneNumber" value={employee.phoneNumber} onChange={(e) => handleInputChange("phoneNumber", e)} />
           </div>
           <div>
@@ -129,17 +118,11 @@ export const EmployeeEditForm = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="boss" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Boss
-            </label>
-
+            <Label name="boss" value="Boss" />
             <Input name="boss" value={employee.boss} onChange={(e) => handleInputChange("boss", e)} />
           </div>
           <div>
-            <label htmlFor="status" className="block text-sm text-left font-medium text-gray-900 dark:text-white">
-              Status
-            </label>
-
+            <Label name="status" value="Status" />
             <Input name="status" value={employee.status} onChange={(e) => handleInputChange("status", e)} />
           </div>
           <div className="flex mt-4 md:mt-6">
